@@ -1,7 +1,9 @@
-var path = require('path');
+var path = require('path')
+var webpack = require('webpack')
 var autoprefixer = require('autoprefixer')
 var browserslist = require('browserslist')
-var webpack = require('webpack')
+var HappyPack = require('happypack')
+
 var entris = require('./entris')
 
 var isInNodeModules = 'node_modules' === path.basename(path.resolve(path.join(__dirname, '..', '..')));
@@ -50,7 +52,8 @@ var config = {
             include: srcPath,
             exclude: /node_modules/,
             loader: 'babel',
-            query: require('./babel.dev')
+            query: require('./babel.dev'),
+            happy: { id: 'jsx' }
         }, {
             test: /\.json$/,
             loader: 'json'
@@ -66,6 +69,7 @@ var config = {
         autoprefixer({ browsers: browserslist('last 2 version, > 0.1%')})
     ],
     plugins: [
+        new HappyPack({ id: 'jsx', threads: 4 }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

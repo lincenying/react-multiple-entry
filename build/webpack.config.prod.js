@@ -55,7 +55,6 @@ var config = merge(baseWebpackConfig, {
         })
     ]
 })
-console.log(Object.keys(entris))
 Object.keys(entris).forEach(function(entry) {
     config.plugins.push(
         new HtmlWebpackPlugin({
