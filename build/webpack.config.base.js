@@ -52,8 +52,7 @@ var config = {
             include: srcPath,
             exclude: /node_modules/,
             loader: 'babel',
-            query: require('./babel.dev'),
-            happy: { id: 'jsx' }
+            query: require('./babel.dev')
         }, {
             test: /\.json$/,
             loader: 'json'
@@ -69,7 +68,6 @@ var config = {
         autoprefixer({ browsers: browserslist('last 2 version, > 0.1%')})
     ],
     plugins: [
-        new HappyPack({ id: 'jsx', threads: 4 }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

@@ -10,25 +10,19 @@ var config = merge(baseWebpackConfig, {
     module: {
         loaders: [{
             test: /\.css$/,
-            loader: 'style!css?-autoprefixer!postcss',
-            happy: { id: 'css' }
+            loader: 'style!css?-autoprefixer!postcss'
         }, {
             test: /\.less/,
-            loader: 'style!css?-autoprefixer!postcss!less',
-            happy: { id: 'less' }
+            loader: 'style!css?-autoprefixer!postcss!less'
         }, {
             test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
-            loader: 'file',
-            happy: { id: 'img' }
+            loader: 'file'
         }]
     },
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"development"'
         }),
-        new HappyPack({ id: 'css', threads: 4 }),
-        new HappyPack({ id: 'less', threads: 4 }),
-        new HappyPack({ id: 'img', threads: 4 }),
         new webpack.HotModuleReplacementPlugin()
     ]
 })
